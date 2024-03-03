@@ -7,3 +7,13 @@ button.mat-mdc-button {
     border-radius: 100px;
  }
 
+app-toolbar{
+    width: 100%;
+}
+
+mat-list-option {
+    padding: 10px;
+    .mdc-list-item__end{
+        display: none;
+    }
+}

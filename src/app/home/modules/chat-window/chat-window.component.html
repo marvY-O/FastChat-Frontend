@@ -1,0 +1,26 @@
+<div class="main" *ngIf="currentChat.name != ''">
+    <div class="header">
+        <mat-toolbar>
+            <span class="profile-icon" style="background-image: url('https://ui-avatars.com/api/?name={{currentChat.name}}');"></span>
+            
+            <span>{{currentChat.name}}</span>
+            <span class="spacer"></span>
+        </mat-toolbar>
+        </div>
+    <div class="messages">
+        <div class="sent">
+            <span>Heyyyaa</span>
+        </div>
+        <div class="recieved">
+            <span>Hieeeee</span>
+        </div>
+    </div>
+    <div class="text-input">
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="Type a message">
+        </mat-form-field>
+        <button mat-fab color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon>send</mat-icon>
+        </button>
+    </div>
+</div>
