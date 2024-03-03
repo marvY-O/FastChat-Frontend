@@ -1,0 +1,17 @@
+.body{
+    margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main{ 
+    text-align: center;
+    line-height: 150px; /* Keep the content vertically centered */
+}
+
+.main div{
+    line-height: 10px;
+}
