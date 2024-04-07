@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { ChatWindowComponent } from './modules/chat-window/chat-window.component';
 import { ContactListComponent } from './modules/contact-list/contact-list.component';
-import { Chat, Conversation } from './chats.interface';
+import { Chat, Conversation, Message } from './chats.interface';
 import { ConvertToNumber } from 'web3';
 
 @Component({
@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
       "name": "Vyom",
       "conversation": [
         {
-          "time": "2024-03-03T08:00:00Z",
-          "message": "Hi",
+          "time": "2024-03-01T15:45:00Z",
+          "message": "Nice to meet you",
           "sent": false
         },
         {
@@ -36,8 +36,8 @@ export class HomeComponent implements OnInit {
           "sent": true
         },
         {
-          "time": "2024-03-01T15:45:00Z",
-          "message": "Nice to meet you",
+          "time": "2024-03-03T08:00:00Z",
+          "message": "Hi",
           "sent": false
         }
       ]
@@ -46,14 +46,14 @@ export class HomeComponent implements OnInit {
       "name": "Ishleen",
       "conversation": [
         {
-          "time": "2024-03-03T09:15:00Z",
-          "message": "Hello",
-          "sent": true
-        },
-        {
           "time": "2024-03-02T11:20:00Z",
           "message": "What are you doing?",
           "sent": false
+        },
+        {
+          "time": "2024-03-03T09:15:00Z",
+          "message": "Hello",
+          "sent": true
         }
       ]
     },
@@ -102,10 +102,39 @@ export class HomeComponent implements OnInit {
         const contact: Chat = {
           id: id,
           name: name,
-          last_message: conversation[conversation.length-1]
+          last_message: conversation[0]
         }
         this.Chats.push(contact);
       }
     }
+  }
+
+  updateLastMessage(userId: string, message: Message){
+    console.log(this.Chats);
+    console.log(userId, message)
+    for (let i=0; i<this.Chats.length; i++){
+      if (this.Chats[i].id === userId)[
+        this.Chats[i].last_message = message
+      ]
+    }
+  }
+
+  getCurrentTimeInISOString() {
+    const now = new Date();
+    const isoString = now.toISOString();
+    return isoString.substring(0, 19) + "Z"; // Format as 'YYYY-MM-DDTHH:MM:SSZ'
+  }
+
+  sendMessage(message: string){
+    const userId = this.selectedContact;
+    if (userId in this.Conversations){
+      this.Conversations[userId].conversation.unshift({
+        time: this.getCurrentTimeInISOString(),
+        message: message,
+        sent: true,
+      })
+      this.updateLastMessage(userId, this.Conversations[userId].conversation[0]);
+    }
+    
   }
 }

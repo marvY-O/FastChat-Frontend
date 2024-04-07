@@ -14,33 +14,48 @@
 }
 .main{
     width: 100%;
+    /* height: calc(100vh - 65px); */
     display: flex;
     flex-direction: column;
 }
 .text-input{
     display: flex;
     flex-direction: row;
-}
-.text-input mat-form-field{
+    /* position: fixed; */
+    /* bottom: 0; */
     width: 100%;
+    mat-form-field{
+        /* min-width: 800px; */
+        width: 100%;
+    }
 }
 
+
 .messages{
-    padding: 10px;
+    padding: 20px;
+    height: calc(100vh - 250px);
+    overflow: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
 }
 
 .sent{
+    /* display: flex; */
+    flex-direction: column;
     text-align: right;
     border-radius: 50px;
     padding: 10px;
 
-    span {
+    .text {
         padding: 8px;
         border-radius: 16px 16px 0px 16px;
         background-color: rgb(172, 172, 172);
     }
+}
+
+.time{
+    font-size: 12px;
+    padding-top: 10px;
 }
 
 .recieved{
@@ -48,9 +63,14 @@
     border-radius: 50px;
     padding: 10px;
 
-    span {
+    .text{
         padding: 8px;
         border-radius: 16px 16px 16px 0px;
         background-color: rgb(172, 172, 172);
     }
+}
+
+form{
+    display: inherit;
+    width: 100%;
 }

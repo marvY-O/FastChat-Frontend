@@ -7,7 +7,7 @@
         <app-contact-list [chats]="this.Chats" (currentContact)="changeSelectedContact($event)"></app-contact-list>
       </div>
       <div class="active-conversation">
-        <app-chat-window [currentChat]="selectedContact == '' ? emptyConversation : Conversations[selectedContact] "></app-chat-window>
+        <app-chat-window [currentChat]="selectedContact == '' ? emptyConversation : Conversations[selectedContact]" (sendMessage)="sendMessage($event)"></app-chat-window>
       </div>
     </div>
   

@@ -8,19 +8,21 @@
         </mat-toolbar>
         </div>
     <div class="messages">
-        <div class="sent">
-            <span>Heyyyaa</span>
-        </div>
-        <div class="recieved">
-            <span>Hieeeee</span>
-        </div>
+        <ng-container *ngFor="let chat of currentChat.conversation">
+            <div [ngClass]="chat.sent ? 'sent' : 'recieved'">
+                <span class="text">{{chat.message}}</span>
+                <div class="time">{{chat.time | date:'h:mm a'}}</div>
+            </div>
+        </ng-container>
     </div>
     <div class="text-input">
-        <mat-form-field appearance="outline">
-            <input matInput placeholder="Type a message">
-        </mat-form-field>
-        <button mat-fab color="primary" aria-label="Example icon button with a menu icon">
-            <mat-icon>send</mat-icon>
-        </button>
+        <form [formGroup]="messageForm" (ngSubmit)="send($event)">
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="message" placeholder="Type a message">
+            </mat-form-field>
+            <button mat-fab color="primary" aria-label="Example icon button with a menu icon" type="submit">
+                <mat-icon>send</mat-icon>
+            </button>
+        </form>
     </div>
 </div>

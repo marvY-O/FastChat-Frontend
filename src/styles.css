@@ -7,6 +7,12 @@ button.mat-mdc-button {
     border-radius: 100px;
  }
 
+body{
+    margin: auto;
+    min-width: 800px;
+    width: 70%;
+}
+
 app-toolbar{
     width: 100%;
 }

@@ -5,13 +5,13 @@ import { Observable, catchError, map, throwError } from 'rxjs';
 import { ErrorResponse, GenericResponse, LoginUser, LoginUserResponse, RegisterUser } from '../../auth.interface';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { Router } from '@angular/router';
+import { LOCAL_STORAGE_KEYS } from '../../../helper/constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly apiUrl = 'http://127.0.0.1:3000/api/user';
-  private tokenKey = 'auth_token';
 
   constructor(private http: HttpClient, private snackbarService: SnackbarService, private router: Router) {}
 
@@ -56,11 +56,11 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN);
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem(this.tokenKey);
+    const token = localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN);
 
     if (!token) {
         return false;
@@ -70,7 +70,7 @@ export class AuthService {
 
     const currentTimestamp = Math.floor(Date.now() / 1000); 
     if (decodedToken.exp && currentTimestamp > decodedToken.exp) {
-        localStorage.removeItem(this.tokenKey);
+        localStorage.removeItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN);
         return false;
     }
 
@@ -78,10 +78,10 @@ export class AuthService {
 }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    return localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN);
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN, token);
   }
 }
