@@ -1,7 +1,12 @@
-<mat-selection-list [multiple]="false">
-    <mat-list-item role="listitem" *ngFor="let contact of chats" (click)="selectContact(contact.id)" [ngClass]="{'selected-contact': selectedContact == contact.id}">
-        <span matListItemAvatar class="profile-icon"  style="background-image: url('https://ui-avatars.com/api/?name={{contact.name}}')"></span>
-        <h3 matListItemTitle>{{contact.name}}</h3>
-        <span matListItemLine><span *ngIf="contact.last_message.sent">You: </span>{{contact.last_message.message}}</span>
-    </mat-list-item>
-</mat-selection-list>
+<div class="contact-list">
+    <mat-selection-list [multiple]="false">
+        <mat-list-item role="listitem" *ngFor="let contact of chats" (click)="selectContact(contact.id)" [ngClass]="{'selected-contact': selectedContact == contact.id}">
+            <span matListItemAvatar class="profile-icon"  style="background-image: url('https://ui-avatars.com/api/?name={{contact.name}}')"></span>
+            <h3 matListItemTitle>{{contact.name}}</h3>
+            <span matListItemLine><span *ngIf="contact.last_message.sent">You: </span>{{contact.last_message.message}}</span>
+        </mat-list-item>
+    </mat-selection-list>
+    <button mat-fab color="primary" class="add-contact" aria-label="Example icon button with a menu icon" (click)="openAddContactDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

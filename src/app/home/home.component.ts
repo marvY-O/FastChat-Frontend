@@ -11,7 +11,6 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { ChatWindowComponent } from './modules/chat-window/chat-window.component';
 import { ContactListComponent } from './modules/contact-list/contact-list.component';
 import { Chat, Conversation, Message } from './chats.interface';
-import { ConvertToNumber } from 'web3';
 
 @Component({
   selector: 'app-home',

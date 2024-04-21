@@ -13,3 +13,17 @@ mat-list-option .mdc-list-item__end{
 .selected-contact{
     background-color: rgb(212, 212, 212);
 }
+
+.contact-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.add-contact{
+    /* position: fixed; */
+    /* bottom: 0; */
+    margin-bottom: 16px;
+}

@@ -1,0 +1,22 @@
+.add-contact-container{
+    padding: 16px;
+}
+
+.search-bar{
+    width: 100%;       
+}
+
+.results-container{
+
+}
+
+.default-container{
+    color: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+    margin-top: 100px;
+}
+
+.default-container .mat-icon{
+    transform: scale(2);
+}
