@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Conversation } from '../../chats.interface';
+import { Conversation } from '../../../interfaces/chats.interface';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +33,6 @@ export class ChatWindowComponent implements OnInit{
  }
 
  ngOnInit(): void {
-  console.log(this.currentChat);
   }
 
   send(event: Event){

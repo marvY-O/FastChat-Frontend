@@ -10,7 +10,9 @@ import { RouterLink } from '@angular/router';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { ChatWindowComponent } from './modules/chat-window/chat-window.component';
 import { ContactListComponent } from './modules/contact-list/contact-list.component';
-import { Chat, Conversation, Message } from './chats.interface';
+import { Chat, Conversation, Message } from '../interfaces/chats.interface';
+import { ChattingService } from '../services/chatting/chatting.service';
+import { ProfileService } from '../services/profile/profile.service';
 
 @Component({
   selector: 'app-home',
@@ -84,12 +86,32 @@ export class HomeComponent implements OnInit {
     conversation: []
   }
 
+  constructor (private chatService: ChattingService, private profileService: ProfileService) {}
+
   ngOnInit(): void {
-    this.buildContacts();
+    this.chatService.firstFetch().subscribe(response => {
+      this.Conversations = response;
+      this.selectedContact = Object.keys(this.Conversations)[0];
+      this.buildContacts();
+      this.getNames();
+    });
   }
 
   changeSelectedContact(variable: string){
     this.selectedContact = variable;
+  }
+
+  getNames(){
+    for (const id in this.Conversations){
+      this.profileService.getFriendInfo(id, "").subscribe(response => {
+        this.Conversations[id].name = response.first_name + " " + response.last_name;
+      })
+    }
+    for (let i=0; i<this.Chats.length; i++){
+      this.profileService.getFriendInfo(this.Chats[i].id, "").subscribe(response => {
+        this.Chats[i].name = response.first_name + " " + response.last_name;
+      })
+    }
   }
 
   buildContacts(){
@@ -109,8 +131,6 @@ export class HomeComponent implements OnInit {
   }
 
   updateLastMessage(userId: string, message: Message){
-    console.log(this.Chats);
-    console.log(userId, message)
     for (let i=0; i<this.Chats.length; i++){
       if (this.Chats[i].id === userId)[
         this.Chats[i].last_message = message

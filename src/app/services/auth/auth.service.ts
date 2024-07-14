@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { ErrorResponse, GenericResponse, LoginUser, LoginUserResponse, RegisterUser } from '../../auth.interface';
+import { ErrorResponse, GenericResponse, LoginUser, LoginUserResponse, RegisterUser } from '../../interfaces/auth.interface';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { Router } from '@angular/router';
 import { LOCAL_STORAGE_KEYS } from '../../../helper/constants';
@@ -11,12 +11,12 @@ import { LOCAL_STORAGE_KEYS } from '../../../helper/constants';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly apiUrl = 'http://127.0.0.1:3000/api/user';
+  private readonly authServiceUrl = 'http://127.0.0.1:3000';
 
   constructor(private http: HttpClient, private snackbarService: SnackbarService, private router: Router) {}
 
   register(data: RegisterUser): Observable<GenericResponse> {
-    return this.http.post<GenericResponse>(this.apiUrl+'/register', data).pipe(
+    return this.http.post<GenericResponse>(this.authServiceUrl+'/api/user/register', data).pipe(
       map((response: GenericResponse) => {
         
         this.snackbarService.open(response.message);
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   login(credentials: LoginUser): Observable<LoginUserResponse> {
-    return this.http.post<LoginUserResponse>(this.apiUrl+'/login', credentials).pipe(
+    return this.http.post<LoginUserResponse>(this.authServiceUrl+'/api/user/login', credentials).pipe(
       map((response: LoginUserResponse) => {
         
         this.snackbarService.open("Logged in successfully!");

@@ -7,7 +7,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ErrorResponse, GenericResponse, RegisterUser } from '../../auth.interface';
+import { ErrorResponse, GenericResponse, RegisterUser } from '../../interfaces/auth.interface';
 import { AuthService } from '../../services/auth/auth.service';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 import { ToolbarComponent } from '../../toolbar/toolbar.component';

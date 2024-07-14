@@ -1,7 +1,7 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
-import { Chat } from '../../chats.interface';
+import { Chat } from '../../../interfaces/chats.interface';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AddContactComponent } from './add-contact/add-contact.component';
